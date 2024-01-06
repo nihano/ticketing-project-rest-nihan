@@ -2,6 +2,7 @@ package com.cydeo.controller;
 
 import com.cydeo.dto.ResponseWrapper;
 import com.cydeo.dto.UserDTO;
+import com.cydeo.exception.TicketingProjectException;
 import com.cydeo.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +52,7 @@ public class UserContoller {
 
     @DeleteMapping("/{username}")
     @RolesAllowed({"Admin"})
-    public ResponseEntity<ResponseWrapper> deleteUser(@PathVariable("username") String userName) {
+    public ResponseEntity<ResponseWrapper> deleteUser(@PathVariable("username") String userName) throws TicketingProjectException {
         userService.delete(userName);
         return ResponseEntity.ok(new ResponseWrapper("User is successfully deleted", HttpStatus.OK));
     }
